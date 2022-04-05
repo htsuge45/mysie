@@ -6,7 +6,7 @@ import SearchYoutube from '../views/Youtube.vue'
 
 const routes = [
   {  
-    path: '/',
+    path: '/mysite',
     name:'HomeList',
     component: HomeList
   },
