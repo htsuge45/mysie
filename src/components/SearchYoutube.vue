@@ -1,4 +1,10 @@
 <template>
+
+<YouTube 
+        :video-id="video_id"
+        @ready="onReady"
+        ref="youtube" />
+
  <h5>YoutubeSearch</h5>
  <input size="40" v-model="keyword" placeholder="検索キーワードを入力">
   <button @click="search_video">検索</button>
@@ -37,14 +43,17 @@
 
 <script>
 import axios from 'axios';
+import YouTube from 'vue3-youtube'
 
 export default {
   name: "SearchVideo",
+  components:{YouTube},
   data: function() {
     return {
       results: null,
       keyword: "",
       order: "viewCount", // リソースを再生回数の多い順に並べます。
+      video_id:"f_C3ybWzieM",
       params: {
         q: "", // 検索クエリを指定します。
         part: "snippet",
@@ -52,6 +61,7 @@ export default {
         maxResults: "20", // 最大検索数
         key: "AIzaSyBkqijmigGaqcjCs9erH__rr0wCThFVf-8"
       }
+      
     };
   },
   props: {
@@ -68,7 +78,10 @@ export default {
         .then(function(res) {
           self.results = res.data.items;
         })
-    }
+    },
+    onReady() {
+            this.$refs.youtube.playVideo()
+    },
   }
 };
 </script>

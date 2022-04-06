@@ -1,0 +1,187 @@
+@font-face {
+    font-family: 'NotoSansJP-Regular';
+    src: url('../font/NotoSansJP-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansJP-Medium';
+    src: url('../font/NotoSansJP-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'NotoSansJP-Bold';
+    src: url('../font/NotoSansJP-Bold.otf') format('opentype');
+}
+
+
+body {
+    font-family: NotoSansJP-Regular !important;
+    font-size: 1rem;
+    margin: 0;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+}
+
+input, select, option {
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+    input[type=number] {
+        max-width: 100px;
+    }
+
+    input:focus, select:focus {
+        box-shadow: 0 0 8px rgb(91, 186, 255);
+        outline: none;
+    }
+
+select {
+    min-width: 10rem;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: rgb(255, 192, 203);
+    border: 1px solid rgb(255, 153, 170);
+    border-radius: 5px;
+}
+
+    button:hover {
+        background-color: rgb(255, 153, 170);
+    }
+
+    button:focus {
+        border: 1px solid rgba(0, 0, 0, .1);
+        background-color: rgb(255, 153, 170);
+        box-shadow: 0 0 8px rgb(255, 102, 128);
+        outline: none;
+    }
+
+div.menu-wrap {
+    position: fixed;
+    display: flex;
+    top: 0;
+    width: 100%;
+    height: 3rem;
+    align-items: center;
+    z-index: 9999;
+    background-color: rgb(204, 153, 255);
+}
+
+    div.menu-wrap a.title {
+        color: rgb(255, 255, 255);
+        font-size: 1.5rem;
+        text-decoration: none;
+        padding: 0.5rem;
+        white-space: nowrap;
+    }
+
+        div.menu-wrap a.title:hover, div.menu-wrap a.title:focus {
+            color: rgb(62, 0, 125);
+            text-decoration: underline;
+            outline: none;
+        }
+
+    div.menu-wrap nav.list {
+        margin-left: auto;
+        margin-right: 5rem;
+    }
+
+        div.menu-wrap nav.list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        div.menu-wrap nav.list > ul > li {
+            display: inline-block;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        div.menu-wrap nav.list > ul > li:first-of-type {
+            padding-left: 2rem;
+        }
+
+            div.menu-wrap nav.list > ul > li > a {
+                font-size: 1.25rem;
+                text-decoration: none;
+                color: rgb(255, 255, 255);
+            }
+
+                div.menu-wrap nav.list > ul > li > a:hover, div.menu-wrap nav.list > ul > li > a:focus {
+                    color: rgb(62, 0, 125);
+                    text-decoration: underline;
+                    outline: none;
+                }
+
+div.body-content {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-top: 3rem;
+}
+
+    div.body-content p.title {
+        position: relative;
+        font-size: 1.25rem;
+        font-weight: bold;
+        padding-left: 1.25rem;
+    }
+
+        div.body-content p.title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 0.25rem solid rgb(0, 0, 0);
+            border-radius: 0.25rem;
+        }
+
+div.input-wrap {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+div.input-wrap table{
+    padding-left: 2rem;
+}
+
+div.input-wrap table th{
+    font-weight: normal;
+    min-width: 100px;
+    font-size: 1.1rem;
+    height: 50px;
+}
+
+div.result-wrap{
+    padding-bottom: 5rem;
+}
+
+    div.result-wrap table {
+        display: block;
+        overflow: auto;
+        border-spacing: 0;
+        border-collapse: collapse;
+        max-height: calc(100vh - 200px);
+    }
+
+    div.result-wrap table > tbody tr:nth-child(2n+1){
+        background-color: rgb(254, 229, 234)
+    }
+
+div.result-wrap table > tbody td{
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+        div.result-wrap table > tbody td:nth-child(2) {
+            width: 100%;
+        }

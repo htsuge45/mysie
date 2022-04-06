@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="body-content">
     <TodoForm v-on:add="addTodo"></TodoForm>
     <TodoList v-bind:todos="todos" v-on:delete="deleteTodo"></TodoList>
   </div>
