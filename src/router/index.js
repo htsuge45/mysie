@@ -1,14 +1,20 @@
 
 import {createRouter, createWebHistory} from 'vue-router'
-import HomeList from '../views/Home.vue'
+import HomeAbout from '../views/Home.vue'
+import FormList from '../views/FormAndList.vue'
 import SummaryCalender from '../views/Summary.vue'
 import SearchYoutube from '../views/Youtube.vue'
 
 const routes = [
   {  
-    path: '/mysite',
-    name:'HomeList',
-    component: HomeList
+    path: '/',
+    name:'HomeAbout',
+    component: HomeAbout
+  },
+  {  
+    path: '/formlist',
+    name:'FormList',
+    component: FormList
   },
   {
     path:'/summary',
@@ -19,6 +25,11 @@ const routes = [
     path:'/youtube',
     name: 'SearchYoutube',
     component: SearchYoutube
+  },
+  {
+    path:'/:paths(.*)*',
+    name: 'routing',
+    redirect:'/'
   }
 
 ]

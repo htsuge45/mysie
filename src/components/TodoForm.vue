@@ -1,7 +1,4 @@
 <template>
-
-  <div class="input-wrap">
-    <p class="title">トレーニング結果を入力</p>
     <form v-on:submit.prevent="addTodo">
       <table>
         <tr>
@@ -19,7 +16,7 @@
         </tr>
       </table>      
     </form> 
-  </div>
+
 
 
 

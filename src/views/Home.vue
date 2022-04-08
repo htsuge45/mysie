@@ -1,68 +1,49 @@
 <template>
   <div class="body-content">
-    <TodoForm v-on:add="addTodo"></TodoForm>
-    <TodoList v-bind:todos="todos" v-on:delete="deleteTodo"></TodoList>
+    <!--
+    
+    <div class="what-about">
+        <h2>What's about...?</h2>
+        <p>トレーニングを記録するサイトです</p>
+    </div>
+
+    <div class="go-form">
+        <p>トレーニングを記録しましょう</p>
+        <button> >> 入力フォーム </button>
+    </div>
+    <div>
+        <img src="../assets/image/record.jpg">
+    </div>
+
+    <div>
+        <img src="../assets/image/calendar.jpg">
+    </div> 
+    <div class="go-calendar">
+        <p>カレンダーで結果を見れます</p>
+        <button> >> カレンダー </button>
+    </div>
+    
+    <div class="go-search">
+        <p>YouTubeでExercise動画を見つけよう</p>
+        <button> >> 検索 </button>
+    </div>  
+    
+-->
   </div>
 </template>
 
+
 <script>
-import TodoForm from '../components/TodoForm';
-import TodoList from '../components/TodoList';
-import deftodos from '../assets/data.json';
-
-export default {
-  name: 'HomeList',
-  components: {
-    TodoForm,
-    TodoList,
-  },
-  data(){
-    return{
-      todos:[],
-      nextId: 0,
-      deftodos: deftodos
+    export default {
+    name: 'HomeAbout',
     }
-  },
-  created(){
-    if(localStorage.getItem('todos')){
-      try{
-        this.todos = JSON.parse(localStorage.getItem('todos'))
-      } catch(e){
-        localStorage.removeItem('todos')
-      }
-    }else{
-      localStorage.setItem('todos',JSON.stringify(deftodos))
-      this.todos = deftodos;
-      console.log("aa");
-
-    }
-    if(localStorage.getItem('id')){
-      this.nextId = localStorage.getItem('id');
-    }else{
-      this.nextId = 3;
-      localStorage.setItem('id',this.nextId);
-    }
-
-  },
-  methods: {
-   addTodo (newDay,newTodo,newTime) {
-    this.nextId++;
-    this.todos = [...this.todos, { id: this.nextId, day: newDay, text: newTodo, time: newTime }];
-    localStorage.setItem('id',this.nextId)
-   },
-   deleteTodo (id) {
-    this.todos = this.todos.filter(todo => todo.id !== id);
-  }
- },
-  watch:{
-    todos:{
-      handler: function(todos){
-        localStorage.setItem('todos',JSON.stringify(todos))
-      },
-      deep: true
-    }
-  }
-  
-}
-
 </script>
+
+<style>
+    div.what-about{
+        background-image: url(../assets/image/about.jpg);
+        background-blend-mode: screen;
+    }
+
+
+</style>

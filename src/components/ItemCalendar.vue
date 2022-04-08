@@ -15,8 +15,8 @@
             </div>
         </div>
         
-        <div class="row calendar-weekly"  v-for="(week, index) in calendars" v-bind:key="index">
-            <div class="calendar-daily" v-for="(day, index) in week" v-bind:key="index">
+        <div class="row calendar-weekly" v-for="(week, index) in calendars" v-bind:key="index">
+            <div class="calendar-daily" v-bind:class="{outside: currentMonth() !== day.month}" v-for="(day, index) in week" v-bind:key="index">
                 {{ day.day }}
                 <div class="calendar-event" v-for="dayEvent in day.dayEvents" :key="dayEvent.id" >
                      {{ dayEvent.text }} {{dayEvent.time}}分
@@ -36,7 +36,7 @@
 <script>
 import moment from "moment";
 export default {
-    props:['todos'],
+    props:['Items'],
     data() {
         return {
         currentDate: moment(),
@@ -93,8 +93,8 @@ export default {
         },
         getDayEvents(date){
             
-            return this.todos.filter(todo => {
-                let startDate = moment(todo.day).format('YYYY-MM-DD')
+            return this.Items.filter(Item => {
+                let startDate = moment(Item.day).format('YYYY-MM-DD')
                 let Date = date.format('YYYY-MM-DD')
                 if(startDate == Date) return true;
             });

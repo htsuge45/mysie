@@ -1,29 +1,28 @@
 <template>
-  <div class="calender">
-    <h5>This is a calender page</h5>
-    <TodoCalendar v-bind:todos="todos"></TodoCalendar>
+  <div class="body-content">
+    <ItemCalendar v-bind:Items="Items"></ItemCalendar>
   </div>
 </template>
 
 <script>
-import TodoCalendar from '../components/TodoCalendar.vue'
+import ItemCalendar from '../components/ItemCalendar.vue'
 
 export default {
   name: 'SummaryCalender',
   components: {
-    TodoCalendar,
+    ItemCalendar,
   },
   data(){
     return{
-      todos:[],
+      Items:[],
     }
   },
   mounted(){
-    if(localStorage.getItem('todos')){
+    if(localStorage.getItem('Items')){
       try{
-        this.todos = JSON.parse(localStorage.getItem('todos'))
+        this.Items = JSON.parse(localStorage.getItem('Items'))
       } catch(e){
-        localStorage.removeItem('todos')
+        localStorage.removeItem('Items')
       }
     }
   }

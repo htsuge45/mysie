@@ -4,9 +4,9 @@
       <a class="title" href="./">Exercise record</a>
       <nav class="list">
         <ul>
-          <li><router-link to="/mysite">List</router-link></li>
-          <li><router-link to="/summary">summary</router-link></li>
-          <li><router-link to="/youtube">Youtube</router-link></li>
+          <li><router-link to="/formlist">Form</router-link></li>
+          <li><router-link to="/summary">Calendar</router-link></li>
+          <li><router-link to="/youtube">Search</router-link></li>
         </ul>
       </nav>
 
@@ -18,7 +18,6 @@
 
 export default {
   name: 'App',
-
 }
 
 </script>
