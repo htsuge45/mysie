@@ -427,3 +427,8 @@ div.youtube-wrap {
                     font-size: 1.5rem;
                     font-weight: bold;
                 }
+
+                div.youtube-wrap > table tr td a {
+                    text-decoration: none;
+                    color: rgb(0,0,0);
+                }

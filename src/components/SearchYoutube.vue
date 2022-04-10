@@ -9,8 +9,8 @@
     <tbody>
       <tr>
         <td colspan="2">
-          <button v-on:click="prevList" class="prev">prev</button>
-          <button v-on:click="nextList" class="next">next</button>
+          <button v-on:click="prevList" class="prev" v-bind:disabled="activatePrev">prev</button>
+          <button v-on:click="nextList" class="next" v-bind:disabled="activateNext">next</button>
         </td>
       </tr>
       <tr v-for="(movie) in yitems" v-bind:key="movie.id.videoId">
@@ -19,10 +19,12 @@
             <img v-bind:src="movie.snippet.thumbnails.medium.url">
           </a>
         </td>
-        <td>
-          <p class="video-title">{{ movie.snippet.title }}</p>
-          <p>{{ movie.snippet.description}}</p>
-        </td>
+          <td>
+            <a v-bind:href="'https://www.youtube.com/watch?v=' + movie.id.videoId " target="_blank">
+              <p class="video-title" >{{ movie.snippet.title }}</p>
+              <p>{{ movie.snippet.description}}</p>
+            </a>
+          </td>
       </tr>
     </tbody>
   </table>
@@ -42,16 +44,16 @@ export default {
       results: null,
       yitems: [],
       keyword: "",
-      order: "viewCount", // リソースを再生回数の多い順に並べます。
+      order: "viewCount", 
       params: {
-        q: "", // 検索クエリを指定します。
+        q: "", 
         part: "snippet",
         type: "video",
-        maxResults: "100", // 最大検索数
+        maxResults: "100",
         key: "AIzaSyBkqijmigGaqcjCs9erH__rr0wCThFVf-8"
       },
       parPage: 4,
-      currentPage: 1
+      currentPage: 0
     };
   },
   methods: {
@@ -63,11 +65,8 @@ export default {
           params: this.params
         })
         .then(function(res) {
-          let current = self.currentPage * self.parPage;
-          let start = current - self.parPage;
           self.results = res.data.items;
-          console.log(self.results);
-          self.yitems = self.results.slice(start, current);
+          self.currentPage ++;
         })
     },
     nextList() {
@@ -76,6 +75,22 @@ export default {
     prevList() {
       this.currentPage = this.currentPage - 1;   
     },
+  },
+  computed:{
+    activatePrev() {
+      if (this.currentPage <= 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    activateNext(){
+      if (this.currentPage >= (this.params.maxResults/this.parPage)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   watch:{
     currentPage(){
