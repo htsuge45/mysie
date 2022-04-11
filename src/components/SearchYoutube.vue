@@ -1,10 +1,11 @@
 <template>
-
- <div class="search">
-  <input size="30" v-model="keyword" placeholder="検索キーワードを入力">
-  <button v-on:click="search_video"><i class="fa fa-search"></i></button>
- </div>
+  <!--検索-->
+  <div class="search">
+    <input size="30" v-model="keyword" placeholder="検索キーワードを入力">
+    <button v-on:click="search_video"><i class="fa fa-search"></i></button>
+  </div>
  
+ <!--検索結果-->
   <table v-show="results">
     <tbody>
       <tr>
@@ -35,7 +36,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'; //非同期通信モジュール
 
 export default {
   name: "SearchVideo",
@@ -44,7 +45,7 @@ export default {
       results: null,
       yitems: [],
       keyword: "",
-      order: "viewCount", 
+      order: "viewCount", //再生回数順で表示
       params: {
         q: "", 
         part: "snippet",
@@ -52,8 +53,8 @@ export default {
         maxResults: "100",
         key: "AIzaSyBkqijmigGaqcjCs9erH__rr0wCThFVf-8"
       },
-      parPage: 4,
-      currentPage: 0
+      perPage: 4,
+      currentPage: 0 //デフォルト0の時は検索結果テーブルを表示しない
     };
   },
   methods: {
@@ -66,7 +67,7 @@ export default {
         })
         .then(function(res) {
           self.results = res.data.items;
-          self.currentPage ++;
+          self.currentPage ++; //結果を取得したらcurrentPageの値を1にする
         })
     },
     nextList() {
@@ -76,7 +77,7 @@ export default {
       this.currentPage = this.currentPage - 1;   
     },
   },
-  computed:{
+  computed:{ //ページ数に合わせてボタンをdisabledにする処理
     activatePrev() {
       if (this.currentPage <= 1) {
         return true;
@@ -85,7 +86,7 @@ export default {
       }
     },
     activateNext(){
-      if (this.currentPage >= (this.params.maxResults/this.parPage)) {
+      if (this.currentPage >= (this.params.maxResults/this.perPage)) {
         return true;
       } else {
         return false;
@@ -93,9 +94,9 @@ export default {
     }
   },
   watch:{
-    currentPage(){
-        var cur = this.currentPage * this.parPage;
-        var str = cur - this.parPage;
+    currentPage(){  //currentPageの変化で、検索結果アイテムの表示を変える
+        var cur = this.currentPage * this.perPage;
+        var str = cur - this.perPage;
         this.yitems = this.results.slice(str,cur);  
     }
 

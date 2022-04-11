@@ -1,5 +1,6 @@
 <template>
   <div class="result-wrap">
+    <!--運動結果一覧表示コンポーネント -->
     <p class="title">結果一覧</p>
     <table>
       <tbody>
@@ -32,13 +33,13 @@ export default {
    }
  },
  methods: {
-    deleteItem (id) {
+    deleteItem (id) { //削除
       this.$emit('delete', id);
     },
-    updateItem(id){
-      this.editIndex = this.editIndex > 0 ? -1 : id;
+    updateItem(id){ //修正
+      this.editIndex = this.editIndex > 0 ? -1 : id; //editIndexをidと合わせることで修正できるようにする
     },
-    completeItem(){
+    completeItem(){ //完了
       this.editIndex = -1;
     }
  }
